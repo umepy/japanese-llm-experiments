@@ -2,7 +2,7 @@ from typing import Any
 
 import torch
 from loguru import logger
-from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer  # type: ignore
 
 
 class Model:
@@ -45,8 +45,30 @@ class Model:
             device_map="auto",
         )
 
+    def load_orca_mini_3b(self, load_in_4bit=False, load_in_8bit=False):
+        logger.info("loading orca-mini-3b")
+        self.tokenizer = AutoTokenizer.from_pretrained("psmathur/orca_mini_3b")
+        self.model = AutoModelForCausalLM.from_pretrained(
+            "psmathur/orca_mini_3b",
+            load_in_4bit=load_in_4bit,
+            load_in_8bit=load_in_8bit,
+            device_map="auto",
+        )
+
 
 if __name__ == "__main__":
     model = Model()
-    model.load_mpt30b(load_in_4bit=True)
-    print(model("Q:Vtuberってなんですか? \nA:"))
+    model.load_orca_mini_3b()
+
+    p_system = "You are an AI assistant that follows instruction extremely well. Help as much as you can."
+    p_instruction = (
+        "You broadcast on youtube. Provide interesting trivias to viewer. Occasionally pose questions to viewer"
+    )
+    p_input = ""
+
+    if len(p_input) != 0:
+        prompt = f"### System:\n{p_system}\n\n### User:\n{p_instruction}\n\n### Input:\n{input}\n\n### Response:\n"
+    else:
+        prompt = f"### System:\n{p_system}\n\n### User:\n{p_instruction}\n\n### Response:\n"
+
+    print(model(prompt))
