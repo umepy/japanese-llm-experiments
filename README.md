@@ -20,3 +20,6 @@ Python: 3.10
 
 1. rinnaモデル
 2. MPT-30Bモデル
+3. orca mini
+4. RWKV-4-world
+5. xgen-7B

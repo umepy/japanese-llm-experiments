@@ -805,6 +805,20 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "rwkv"
+version = "0.8.0"
+description = "The RWKV Language Model"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "rwkv-0.8.0-py3-none-any.whl", hash = "sha256:a67bd50562ff0f8d9eb2db6116dfac3149bd9478296d90d8da64edddab27ff4c"},
+    {file = "rwkv-0.8.0.tar.gz", hash = "sha256:866a07b4bcacd5f8ff49413a738f0071d9944baf09220adf393105d5e4df6491"},
+]
+
+[package.dependencies]
+tokenizers = ">=0.13.2"
+
+[[package]]
 name = "safetensors"
 version = "0.3.1"
 description = "Fast and Safe Tensor serialization"
@@ -1231,4 +1245,4 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "eadcd3f815c5de8bbeb8a2149392c9e65a32b4a678bd331cf0a88d062262e24e"
+content-hash = "51d279ae902e9b45395cb07763586c2a599efb41171ded96af496d1c37926b43"
